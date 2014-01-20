@@ -1,0 +1,106 @@
+\documentclass[11pt]{article}
+\usepackage{a4wide}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{cite}
+
+\newtheorem{problem}{Problem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\author{M.~El-Kebir, G.W.~Klau}
+\title{Fragment-based molecule parameterisation}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+The automated topology builder (ATB) is a web server for generating topologies
+of novel molecules compatible with the GROMOS 53A6 force field \cite{Malde11}.
+The ATB is able to parameterise molecules consisting of up to 50 atoms. Due to
+the complexity of the quantum mechanics computations, molecules larger than 50
+atoms pose a problem for the ATB. 
+
+Here, we introduce a method that assists the ATB by searching for fragments
+common to both the input molecule and a molecule in the repository. The atom
+charges of the input molecule are set according to the charges of the core atoms
+of the found common fragments.
+
+\section{Problem definition}
+
+A molecule is a simple graph $G=(V,E)$ whose nodes and edges correspond to atoms
+and bonds, respectively. Nodes are labeled by their partial charge $w : V
+\rightarrow \mathbb{R}$ and their atom type $t : V \rightarrow \mathbb{N}$. 
+For a subset $V^\prime \subseteq V$, $t(V^\prime)$ is the set $\bigcup_{v \in
+V^\prime} t(v)$. The neighborhood $N(v)$ of a node $v \in V$ is the set $\{ u
+\mid (u,v) \in E \}$. Similarly for a subset $V^\prime \subseteq V$, we define
+$N(V^\prime)$ to be the set $\bigcup_{v \in V^\prime} N(v)$. 
+
+Given molecules $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ with atom types $t_1 :
+V_1 \rightarrow \mathbb{N}$ and $t_2 : V_2 \rightarrow \mathbb{N}$, we define a
+common fragment and its shell as follows.
+
+\begin{definition}
+  A \emph{common fragment} is a pair $(V^\prime_1, V^\prime_2)$ with $V^\prime_1
+  \subseteq V_1$ and $V^\prime_2 \subseteq V_2$ that admits a bijection $h :
+  V^\prime_1 \cup N(V^\prime_1) \rightarrow V^\prime \cup N(V^\prime_2)$ such
+  that
+  \begin{enumerate}
+    \item[(i)] $G_1[V^\prime_1]$ and $G_2[V^\prime_2]$ are connected,
+    \item[(ii)] $(u,v)$ is an edge in $G_1[V^\prime_1 \cup N(V^\prime_1)]$ if and
+      only if $(h(u),h(v))$ is an edge in $G_2[V^\prime_2 \cup N(V^\prime_2)]$,
+    \item[(iii)] $t_1(v) = t_2(h(v))$ for all $v \in V^\prime_1 \cup
+      N(V^\prime_1)$.
+  \end{enumerate}
+\end{definition}
+\begin{definition}
+  The \emph{shell} of a common fragment $(V^\prime_1, V^\prime_2)$ is given
+  by $(N(V^\prime_1), N(V^\prime_2))$.
+\end{definition}
+
+\begin{definition}
+A common fragment $(V^\prime_1,V^\prime_2)$ is \emph{maximal} if
+there exists no common fragment $(V^{\prime\prime}_1,V^{\prime\prime}_2)$ such
+that $V^\prime_1 \subseteq V^{\prime\prime}_1$ and $V^\prime_2 \subseteq
+V^{\prime\prime}_2$.
+\end{definition}
+
+The problem that we want to solve is now as follows.
+
+\begin{problem}
+Given graphs $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ with atom types $t_1 :
+V_1 \rightarrow \mathbb{N}$ and $t_2 : V_2 \rightarrow \mathbb{N}$, find the
+set of all maximal common fragments.
+\end{problem}
+
+\section{Method}
+
+We solve the problem by finding maximal cliques on the node product graph, which
+is defined as follows.
+
+\begin{definition}
+The \emph{node product graph} $G_1 \otimes G_2$ has a node set $\{(u,v) \in V_1
+\times V_2 \mid t_1(u) = t_2(v) \mbox{ and } t_1(N(u)) = t_2(N(v)) \}$ and an
+edge between $(u,v)$ and $(u^\prime,v^\prime)$ if and only if $(u,u^\prime) \in
+E_1$ and $(v,v^\prime) \in E_2$, or $(u,u^\prime) \not \in E_1$ and
+$(v,v^\prime) \not \in E_2$.
+\end{definition}
+
+\begin{itemize}
+  \item Bron-Kerbosch algorithm
+  \begin{itemize}
+    \item Adjusted to find connected common subgraphs~\cite{Koch:1996fc,Koch:2001wi}
+  \end{itemize}
+\end{itemize}
+
+\bibliographystyle{abbrv}
+\bibliography{fragments}
+
+\end{document}
+
