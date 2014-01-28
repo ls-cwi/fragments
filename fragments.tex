@@ -7,8 +7,11 @@
 \usepackage{subfig}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{color}
+\usepackage{xspace}
 \usepackage[ruled, noline, algo2e, noend, linesnumbered]{algorithm2e}
 
+\newcommand{\todo}[1]{\xspace{\bfseries\sffamily\textcolor{red}{[#1]}}\xspace}
 
 \newtheorem{problem}{Problem}[section]
 \newtheorem{definition}{Definition}[section]
@@ -85,9 +88,11 @@ V_1 \rightarrow \mathbb{N}$ and $t_2 : V_2 \rightarrow \mathbb{N}$, find the
 set of all maximal common fragments.
 \end{problem}
 
+\todo{Extend $N(v)$ to variable shell size.}
+
 \begin{figure}
   \center
-  \subfloat[$G_1$]{\includegraphics[width=.6\textwidth]{images/16841}}
+  \subfloat[\label{fig:16481}$G_1$]{\includegraphics[width=.6\textwidth]{images/16841}}
   %\hspace{.5cm}
   \\
   \subfloat[$G_2$]{\includegraphics[width=.6\textwidth]{images/16842}}
@@ -237,7 +242,12 @@ Algorithm~\ref{alg:bk-degeneracy}.
 
 \section{Results}
 
-
+We compiled a repository of fragments based on the lipid data set of the ATB. 
+This set contains 151 molecules of sizes varying from 25 up to 285 atoms. 
+The computation of all maximal common fragments between the molecule in 
+Figure~\ref{fig:16481} and the 151 molecules in the repository takes a 2 seconds. 
+For larger molecules, such as the one with molecule id 6401 (145 atoms), 
+enumerating all the maximal common fragments takes 2.5 minutes.
 
 \section{Discussion}
 
