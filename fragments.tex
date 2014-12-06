@@ -46,7 +46,7 @@ of the found common fragments.
 A molecular graph is a simple graph $G=(V,E)$ whose nodes and edges correspond
 to atoms and bonds, respectively. Nodes are labeled by their partial charge $w :
 V \rightarrow \mathbb{R}$ and their atom type $t : V \rightarrow T$ where $T$ is
-the of all atom types. For a subset $V^\prime \subseteq V$, $t(V^\prime)$ is the
+the set of all atom types. For a subset $V^\prime \subseteq V$, $t(V^\prime)$ is the
 set $\bigcup_{v \in V^\prime} t(v)$, i.e.\ $t(V^\prime)$ is the set of all atom
 types of nodes in $V^\prime$.
 
@@ -204,7 +204,7 @@ Now we define a $c$-clique as follows.
 
 \begin{definition}
 A \emph{$c$-clique} $C \subseteq V_{12}$ is a clique in $G_{12}$ containing at
-least one $c$-edge.
+least one $c$-edge. \todo{g: this is not enough. spanning tree of $c$-edges?}
 \end{definition}
 
 \begin{definition}
