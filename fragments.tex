@@ -225,10 +225,10 @@ See Ina Koch~\cite{Koch:2001wi}.
 \begin{figure}
   \center
   \includegraphics[width=1.1\textwidth]{images/product}
-  \caption{The product graph; as an optimization product nodes corresponding to
+  \caption{The product graph of the two graphs in Fig.~\ref{fig:example}; as an optimization product nodes corresponding to
     degree 1 nodes in the original graphs have been ignored. $c$-edges are
     colored red and $d$-edges are colored black. These are the maximal
-    $c$-cliques: $\{10,6\}, \{10,0\}, \{13, 7\},
+    $c$-cliques: $\{10,6\}, \{10,9\}, \{13, 7\},
     \{7, 3\}, \{13, 9, 0\}, \{14, 5, 1\}, \{12, 8, 4\}, \{10, 9, 3\}, \{16, 11,
     5, 4\}$ and $\{15, 14, 8, 2\}$.}
   \label{fig:product}
@@ -254,7 +254,7 @@ to~\cite{Koch:1996fc,Koch:2001wi}.
       $D^\prime \leftarrow D \setminus N_c(v)$\\
       $X^\prime \leftarrow X \cup (S \cap N_c(v))$\\
       $S^\prime \leftarrow S \setminus N_c(v)$\\
-      \textsc{BK}($P^\prime \cap N(v)$, $D^\prime  \cap N(v)$, $R \cup \{v\}$,
+      \textsc{cCliques}($P^\prime \cap N(v)$, $D^\prime  \cap N(v)$, $R \cup \{v\}$,
       $X^\prime \cap N(v)$, $S^\prime \cap N(v)$)\\
       $P \leftarrow P \setminus \{v\}$\\
       $X \leftarrow X \cup \{v\}$
@@ -302,7 +302,7 @@ $O(dn3^{d/3})$~\cite{Eppstein:2010uq}---see Algorithm~\ref{alg:bk-degeneracy}.
     $D \leftarrow N_d(v_i) \cap \{v_{i+1}, \ldots, v_n\}$\\
     $X \leftarrow N_c(v_i) \cap \{v_1, \ldots, v_{i-1}\}$\\
     $S \leftarrow N_d(v_i) \cap \{v_1, \ldots, v_{i-1}\}$\\
-    \textsc{BK}$(P, D, \{v_i\}, X, S)$
+    \textsc{cCliques}$(P, D, \{v_i\}, X, S)$
   }
 \end{algorithm2e}
 
