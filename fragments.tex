@@ -11,6 +11,7 @@
 \usepackage{color}
 \usepackage{xspace}
 \usepackage[ruled, noline, algo2e, noend, linesnumbered]{algorithm2e}
+\usepackage[font=small]{caption}
 
 \newcommand{\todo}[1]{\xspace{\bfseries\sffamily\textcolor{red}{[#1]}}\xspace}
 
@@ -70,9 +71,8 @@ V_1 \rightarrow \mathbb{N}$ and $t_2 : V_2 \rightarrow \mathbb{N}$ and $k \in
 \mathbb{N}$, we define a $k$-common fragment and its shell as follows.
 
 \begin{definition}
-Given $k \in \mathbb{N}$, a \emph{$k$-common fragment} is a pair $(V^\prime_1,
-V^\prime_2)$ with $V^\prime_1 \subseteq V_1$ and $V^\prime_2 \subseteq V_2$ that
-admits a bijection $h : V^\prime_1 \cup N^k(V^\prime_1) \rightarrow V^\prime_2
+Given $k \in \mathbb{N}$, a \emph{$k$-common fragment} is a triple $(V^\prime_1,
+V^\prime_2,h)$ with $V^\prime_1 \subseteq V_1$ and $V^\prime_2 \subseteq V_2$ and a bijection $h : V^\prime_1 \cup N^k(V^\prime_1) \rightarrow V^\prime_2
 \cup N^k(V^\prime_2)$ such that
 \begin{enumerate}
   \item[(i)] $G_1[V^\prime_1]$ and $G_2[V^\prime_2]$ are connected,
@@ -85,9 +85,15 @@ admits a bijection $h : V^\prime_1 \cup N^k(V^\prime_1) \rightarrow V^\prime_2
 \end{definition}
 
 \begin{definition}
-The \emph{shell} of a $k$-common fragment $(V^\prime_1, V^\prime_2)$ is given by
+The \emph{shell} of a $k$-common fragment $(V^\prime_1, V^\prime_2, h)$ is given by
 $(N^k(V^\prime_1), N^k(V^\prime_2))$.
 \end{definition}
+
+\todo{adapt remainder of document to account for isomorphisms . if we
+  want, we can filter with DAG $\to$ own section (see e-mail Mohammed)}
+
+\todo{follow-up question: can we take this also into account while
+  searching in the product graph?}
 
 \begin{definition}
 A $k$-common fragment $(V^\prime_1,V^\prime_2)$ is \emph{maximal} if there
