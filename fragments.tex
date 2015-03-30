@@ -65,6 +65,7 @@ types of nodes in $V^\prime$.
   For a subset $V^\prime \subseteq V$, we define $N^i(V^\prime)$ to
   be the set $\bigcup_{v \in V^\prime} N^i(v) \setminus V^\prime$.
 \end{definition}
+\todo{j: Change definition so that $v$ is included in $N^i$ for all $i$? The $u \not\in N^{i-1}(v)$ clauses can probably be removed from the last case either way.}
 
 Given molecules $G_1 = (V_1, E_1)$ and $G_2 = (V_2, E_2)$ with atom types $t_1 :
 V_1 \rightarrow \mathbb{N}$ and $t_2 : V_2 \rightarrow \mathbb{N}$ and $k \in
@@ -98,7 +99,7 @@ $(N^k(V^\prime_1), N^k(V^\prime_2))$.
 \begin{definition}
 A $k$-common fragment $(V^\prime_1,V^\prime_2)$ is \emph{maximal} if there
 exists no $k$-common fragment $(V^{\prime\prime}_1,V^{\prime\prime}_2)$ such
-that $V^\prime_1 \subseteq V^{\prime\prime}_1$ and $V^\prime_2 \subseteq
+that $V^\prime_1 \subset V^{\prime\prime}_1$ and $V^\prime_2 \subset
 V^{\prime\prime}_2$.
 \end{definition}
 
@@ -191,6 +192,7 @@ and $(u^\prime,v^\prime)$ if and only if $u \neq u^\prime$ and $v \neq
 v^\prime$, and either $(u,u^\prime) \in E_1$ and $(v,v^\prime) \in E_2$, or
 $(u,u^\prime) \not \in E_1$ and $(v,v^\prime) \not \in E_2$.
 \end{definition}
+\todo{j: $t_1$ and $t_2$ are not defined for sets. What does $t_1(N^k(u)) = t_2(N^k(v))$ mean?}
 
 Following \cite{Koch:2001wi}, we distinguish between $c$ and $d$-edges in the
 product graph.
@@ -215,7 +217,7 @@ least one $c$-edge. \todo{g: this is not enough. spanning tree of $c$-edges?}
 
 \begin{definition}
 A $c$-clique $C \subseteq V_{12}$ is \emph{maximal} if there is no
-$c$-clique $C^\prime$ such that $C \subseteq C^\prime$.
+$c$-clique $C^\prime$ such that $C \subset C^\prime$.
 \end{definition}
 
 In order to ensure connectivity, we aim to find maximal $c$-cliques. Ina Koch
